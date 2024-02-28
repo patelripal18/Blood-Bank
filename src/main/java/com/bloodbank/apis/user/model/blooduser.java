@@ -1,7 +1,13 @@
 package com.bloodbank.apis.user.model;
 
-public class blooduser {
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+
+public class blooduser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     private String FirstName;
     private String LastName;
