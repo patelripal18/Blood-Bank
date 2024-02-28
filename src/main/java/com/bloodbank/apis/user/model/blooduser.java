@@ -3,8 +3,9 @@ package com.bloodbank.apis.user.model;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-
+@Table(name = "blood_bank")
 public class blooduser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

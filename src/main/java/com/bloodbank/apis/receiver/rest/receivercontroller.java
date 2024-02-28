@@ -1,4 +1,4 @@
-package com.bloodbank.apis.receiver.repository;
+package com.bloodbank.apis.receiver.rest;
 
 //public class receivercontroller {
 //}
