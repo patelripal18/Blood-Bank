@@ -2,14 +2,14 @@ package com.bloodbank.apis.BloodStatistics.service;
 //package com.bloodbank.apis.BloodStatistics.service;
 
 import com.bloodbank.apis.BloodStatistics.model.BloodStatistics;
+//import com.bloodbank.apis.BloodStatistics.repository.BloodStatisticsRepository;
 import com.bloodbank.apis.BloodStatistics.repository.BloodStatisticsRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-public class BloodStatisticsServer {
-
 
     @Service
     public class BloodStatisticsService {
@@ -45,6 +45,7 @@ public class BloodStatisticsServer {
         public void deleteBloodStatistics(int id) {
             bloodStatisticsRepository.deleteById(id);
         }
+
     }
 
-}
+

@@ -1,23 +1,20 @@
 package com.bloodbank.apis.BloodStatistics.rest;
-import com.bloodbank.apis.bloodstatistics.model.BloodStatistics;
-import com.bloodbank.apis.bloodstatistics.service.BloodStatisticsService;
+import com.bloodbank.apis.BloodStatistics.model.BloodStatistics;
+//import com.bloodbank.apis.bloodstatistics.model.BloodStatistics;
+import com.bloodbank.apis.BloodStatistics.service.BloodStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
-public class BloodStstisticsController<BloodStatisticsService> {
-
+//@Autowired
+@RestController
+@RequestMapping("/api/bloodstatistics")
+public class BloodStatisticsController {
     private final BloodStatisticsService bloodStatisticsService;
-
     @Autowired
     public BloodStatisticsController(BloodStatisticsService bloodStatisticsService) {
         this.bloodStatisticsService = bloodStatisticsService;
     }
-
     @GetMapping
-    public List<BloodStatistics> getAllBloodStatistics() {
+    public Class<? extends BloodStatisticsService> getAllBloodStatistics() {
         return bloodStatisticsService.getClass();
     }
 
@@ -41,5 +38,6 @@ public class BloodStstisticsController<BloodStatisticsService> {
         bloodStatisticsService.deleteBloodStatistics(id);
     }
 }
-}
+
+
 
