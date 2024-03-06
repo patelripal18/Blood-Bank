@@ -1,34 +1,35 @@
 package com.bloodbank.apis.User.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Table(name = "blood_bank")
 @Entity
 public class BloodUser {
+    @Getter
+    @Setter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Long Id;
     private String FirstName;
     private String LastName;
     private String Address;
-    private int ContactNumber;
+    private String ContactNumber;
     private String Email;
     private String BloodGroup;
     private String Disease;
     private String Gender;
-    private int Age;
-    private int Weight;
-    private int Height;
+    private String Age;
+    private String Weight;
+    private String Height;
 
     public BloodUser() {
 
     }
 
-    public int getId() {
-        return Id;
-    }
-
-    public BloodUser(int id, String firstName, String lastName, String address, int contactNumber, String email, String bloodGroup, String disease, String gender, int age, int weight, int height) {
+    public BloodUser(Long id, String firstName, String lastName, String address, String contactNumber, String email, String bloodGroup, String disease, String gender, String age, String weight, String height) {
         Id = id;
         FirstName = firstName;
         LastName = lastName;
@@ -40,10 +41,10 @@ public class BloodUser {
         Gender = gender;
         Age = age;
         Weight = weight;
-        Height = height;
+        Height = String.valueOf(height);
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         Id = id;
     }
 
@@ -71,11 +72,11 @@ public class BloodUser {
         Address = address;
     }
 
-    public int getContactNumber() {
+    public String getContactNumber() {
         return ContactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(String contactNumber) {
         ContactNumber = contactNumber;
     }
 
@@ -111,28 +112,28 @@ public class BloodUser {
         Gender = gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return Age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         Age = age;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return Weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         Weight = weight;
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return Height;
     }
 
-    public void setHeight(int height) {
-        Height = height;
+    public void setHeight(String height) {
+        Height = String.valueOf(height);
     }
 
 

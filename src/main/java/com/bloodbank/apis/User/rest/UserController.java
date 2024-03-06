@@ -15,7 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-        import java.util.List;
+import javax.sound.sampled.BooleanControl;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -51,7 +52,7 @@ public class UserController {
 
     // Update an existing user
     @PutMapping("/{userId}")
-    public ResponseEntity<BloodUser> updateUser(@PathVariable int userId, @RequestBody BloodUser updatedUser) {
+    public ResponseEntity<BloodUser> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
         BloodUser user = userService.updateUser(userId, updatedUser);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -61,14 +62,19 @@ public class UserController {
     }
 
     // Delete a user by ID
+//    @DeleteMapping("/{userId}")
+//    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+//        boolean deleted = userService.deleteUser(userId);
+//        if (deleted) {
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
-        boolean deleted = userService.deleteUser(userId);
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Boolean> deletedUser(@PathVariable Long userId){
+        Boolean userDelete  = userService.deleteuser(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

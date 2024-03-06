@@ -23,6 +23,10 @@
 package com.bloodbank.apis.User.service;
 
 import com.bloodbank.apis.User.model.BloodUser;
+import com.bloodbank.apis.User.repo.UserRepository;
+import org.apache.catalina.Loader;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,6 +34,8 @@ import java.util.List;
 
 @Service
 public class UserService {
+    @Autowired
+    public UserRepository userRepository;
 
     private List<BloodUser> users = new ArrayList<>();
     private int nextUserId = 1;
@@ -48,13 +54,13 @@ public class UserService {
 
     // Create a new user
     public BloodUser createUser(BloodUser newUser) {
-        newUser.setId(nextUserId++);
         users.add(newUser);
+        userRepository.save(newUser);
         return newUser;
     }
 
     // Update an existing user
-    public BloodUser updateUser(int userId, BloodUser updatedUser) {
+    public BloodUser updateUser(Long userId, BloodUser updatedUser) {
         for (int i = 0; i < users.size(); i++) {
             BloodUser user = users.get(i);
             if (user.getId() == userId) {
@@ -67,14 +73,21 @@ public class UserService {
     }
 
     // Delete a user by ID
-    public boolean deleteUser(int userId) {
-        for (int i = 0; i < users.size(); i++) {
-            BloodUser user = users.get(i);
-            if (user.getId() == userId) {
-                users.remove(i);
-                return true;
-            }
-        }
-        return false;
+//    public boolean deleteUser(Long userId) {
+//        for (int i = 0; i < users.size(); i++) {
+//            BloodUser user = users.get(i);
+//            if (user.getId() == userId) {
+//                users.remove(i);
+//                userRepository.deleteById(userId);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
+    public Boolean deleteuser (Long userId){
+        userRepository.deleteById(userId);
+        return true;
     }
 }

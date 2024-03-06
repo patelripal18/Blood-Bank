@@ -57,14 +57,20 @@ public class ReceiverController {
     }
 
     // Delete a receiver by ID
+//    @DeleteMapping("/{receiverId}")
+//    public ResponseEntity<Void> deleteReceiver(@PathVariable int receiverId) {
+//        boolean deleted = receiverService.deleteReceiver(receiverId);
+//        if (deleted) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
     @DeleteMapping("/{receiverId}")
     public ResponseEntity<Void> deleteReceiver(@PathVariable int receiverId) {
         boolean deleted = receiverService.deleteReceiver(receiverId);
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

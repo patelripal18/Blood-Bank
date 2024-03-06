@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/bloodstatistics")
 public class BloodStatisticsController {
-    private final BloodStatisticsService bloodStatisticsService;
     @Autowired
+    private final BloodStatisticsService bloodStatisticsService;
+ //   @Autowired
     public BloodStatisticsController(BloodStatisticsService bloodStatisticsService) {
         this.bloodStatisticsService = bloodStatisticsService;
     }
@@ -18,7 +19,7 @@ public class BloodStatisticsController {
         return bloodStatisticsService.getClass();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{BloodStstisticsid}")
     public BloodStatistics getBloodStatisticsById(@PathVariable int id) {
         return bloodStatisticsService.getBloodStatisticsById(id).orElse(null);
     }
@@ -28,13 +29,14 @@ public class BloodStatisticsController {
         return bloodStatisticsService.addBloodStatistics(bloodStatistics);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{BloodStatisticsid}")
     public BloodStatistics updateBloodStatistics(@PathVariable int id, @RequestBody BloodStatistics updatedStatistics) {
         return bloodStatisticsService.updateBloodStatistics(id, updatedStatistics).orElse(null);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{BloodStatisticsid}")
     public void deleteBloodStatistics(@PathVariable int id) {
+
         bloodStatisticsService.deleteBloodStatistics(id);
     }
 }

@@ -1,6 +1,8 @@
 package com.bloodbank.apis.Receiver.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,12 +12,13 @@ import lombok.Setter;
 @Entity
 public class Receiver {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int RId;
-    private int UId;
-    private int Quantity;
-    private int HId;
+    private String UId;
+    private String Quantity;
+    private String HId;
     private String Bloodgroup;
-    private int receivedate;
-    private int receiverNo;
+    private String receivedate;
+    private String receiverNo;
     private String unit;
 }

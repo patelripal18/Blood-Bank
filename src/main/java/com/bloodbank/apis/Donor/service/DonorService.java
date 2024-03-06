@@ -1,10 +1,12 @@
 package com.bloodbank.apis.Donor.service;
 
-//public class donorservice {
-//}
-//package com.bloodbank.apis.donor.service;
+
 
 import com.bloodbank.apis.Donor.model.Donor;
+import com.bloodbank.apis.Donor.repository.DonorRepository;
+import com.bloodbank.apis.User.model.BloodUser;
+import com.bloodbank.apis.User.repo.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Service
 public class DonorService {
+    @Autowired
+    public DonorRepository donorRepository;
 
     private List<Donor> donors = new ArrayList<>();
     private int nextDonorId = 1;
@@ -30,17 +34,19 @@ public class DonorService {
 
     // Create a new donor
     public Donor createDonor(Donor newDonor) {
-        newDonor.setDonorId(nextDonorId++);
+       // newDonor.setDonorId(nextDonorId++);
         donors.add(newDonor);
+        donorRepository.save(newDonor);
         return newDonor;
     }
 
     // Update an existing donor
-    public Donor updateDonor(int donorId, Donor updatedDonor) {
+    public Donor updateDonor(Long donorId, Donor updatedDonor) {
         for (int i = 0; i < donors.size(); i++) {
             Donor d = donors.get(i);
             if (d.getDonorId() == donorId) {
-                updatedDonor.setDonorId(donorId);
+                updatedDonor.setId(donorId);
+               // updatedDonor.setId(donorId);
                 donors.set(i, updatedDonor);
                 return updatedDonor;
             }
@@ -49,15 +55,20 @@ public class DonorService {
     }
 
     // Delete a donor by ID
-    public boolean deleteDonor(int donorId) {
-        for (int i = 0; i < donors.size(); i++) {
-            Donor d = donors.get(i);
-            if (d.getDonorId() == donorId) {
-                donors.remove(i);
-                return true;
-            }
-        }
-        return false;
+//    public boolean deleteDonor(int donorId) {
+//        for (int i = 0; i < donors.size(); i++) {
+//            Donor d = donors.get(i);
+//            if (d.getDonorId() == donorId) {
+//                donors.remove(i);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    public Boolean deleteDonor (Long userId){
+        donorRepository.deleteById(userId);
+        return true;
     }
+
 }
 

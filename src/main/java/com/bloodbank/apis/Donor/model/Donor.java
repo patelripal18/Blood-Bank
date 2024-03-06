@@ -1,6 +1,8 @@
 package com.bloodbank.apis.Donor.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,11 +12,15 @@ import lombok.Setter;
 @Entity
 public class Donor {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private Long id;
     private int donorId;
-    private int userId;
-    private int Qunatity;
+    private String userId;
+    private String Quantity;
     private String unit;
-    private int HId;
-    private int bloodcollectDate;
+    private String HId;
+    private String bloodcollectDate;
+
+    public void setId(Long donorId) {
+    }
 }

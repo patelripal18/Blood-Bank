@@ -47,7 +47,7 @@ public class DonorController {
 
     // Update an existing donor
     @PutMapping("/{donorId}")
-    public ResponseEntity<Donor> updateDonor(@PathVariable int donorId, @RequestBody Donor updatedDonor) {
+    public ResponseEntity<Donor> updateDonor(@PathVariable Long donorId, @RequestBody Donor updatedDonor) {
         Donor donor = donorService.updateDonor(donorId, updatedDonor);
         if (donor != null) {
             return new ResponseEntity<>(donor, HttpStatus.OK);
@@ -57,13 +57,18 @@ public class DonorController {
     }
 
     // Delete a donor by ID
+//    @DeleteMapping("/{donorId}")
+//    public ResponseEntity<Void> deleteDonor(@PathVariable int donorId) {
+//        boolean deleted = donorService.deleteDonor(donorId);
+//        if (deleted) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
     @DeleteMapping("/{donorId}")
-    public ResponseEntity<Void> deleteDonor(@PathVariable int donorId) {
+  public ResponseEntity<Void> deleteDonor(@PathVariable Long donorId) {
         boolean deleted = donorService.deleteDonor(donorId);
-        if (deleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-}
+    }
