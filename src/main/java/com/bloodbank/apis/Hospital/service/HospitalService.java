@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HospitalService {
@@ -28,12 +29,18 @@ public class HospitalService {
         return hospitals;
     }
 
-    // Get a hospital by ID
-    public Hospital getHospitalById(int hospitalId) {
-        // Implement logic to retrieve hospital by ID
-        // Return null if not found
-        return null;
+
+    public Optional<Hospital> getHospitalById(int id) {
+        return hospitalRepository.findById(Long.valueOf(id));
     }
+    // Get a hospital by ID
+//    public Receiver getHospitalById(int hospitalId) {
+//        // Implement logic to retrieve hospital by ID
+//        // Return null if not found
+//        //return null;
+//        Optional<Receiver> receiverOptional  = hospitalRepository.findById(hospitalId);
+//        return receiverOptional.get();
+//    }
 
     // Create a new hospital
     public Hospital createHospital(Hospital newHospital) {

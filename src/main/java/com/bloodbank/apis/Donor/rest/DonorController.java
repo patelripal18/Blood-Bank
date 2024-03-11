@@ -4,14 +4,18 @@ package com.bloodbank.apis.Donor.rest;
 //}
 //package com.bloodbank.apis.donor.controller;
 
+import com.bloodbank.apis.BloodStatistics.model.BloodStatistics;
 import com.bloodbank.apis.Donor.model.Donor;
 import com.bloodbank.apis.Donor.service.DonorService;
+import com.bloodbank.apis.Receiver.model.Receiver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping("/api/donors")
@@ -29,13 +33,20 @@ public class DonorController {
 
     // Get a donor by ID
     @GetMapping("/{donorId}")
-    public ResponseEntity<Donor> getDonorById(@PathVariable int donorId) {
-        Donor donor = donorService.getDonorById(donorId);
+    public ResponseEntity<Donor> getDonorById(@PathVariable Long donorId) {
+        Donor donor = donorService.getDonerById(donorId);
         if (donor != null) {
             return new ResponseEntity<>(donor, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+     //   return donorService.getBloodStatisticsById(id).orElse(null);
+//        Donor donor = donorService.getDonorById(donorId);
+//        if (donor != null) {
+//            return new ResponseEntity<>(donor, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//      }
     }
 
     // Create a new donor
@@ -43,14 +54,17 @@ public class DonorController {
     public ResponseEntity<Donor> createDonor(@RequestBody Donor newDonor) {
         Donor createdDonor = donorService.createDonor(newDonor);
         return new ResponseEntity<>(createdDonor, HttpStatus.CREATED);
+
     }
 
     // Update an existing donor
     @PutMapping("/{donorId}")
-    public ResponseEntity<Donor> updateDonor(@PathVariable Long donorId, @RequestBody Donor updatedDonor) {
+    public ResponseEntity<String> updateDonor(@PathVariable Long donorId, @RequestBody Donor updatedDonor) {
         Donor donor = donorService.updateDonor(donorId, updatedDonor);
         if (donor != null) {
-            return new ResponseEntity<>(donor, HttpStatus.OK);
+            return ResponseEntity.ok().body("Donor updated successfully");
+
+           // return new ResponseEntity<>(donor, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -67,8 +81,13 @@ public class DonorController {
 //        }
 //    }
     @DeleteMapping("/{donorId}")
-  public ResponseEntity<Void> deleteDonor(@PathVariable Long donorId) {
+  public ResponseEntity<String> deleteDonor(@PathVariable Long donorId) {
         boolean deleted = donorService.deleteDonor(donorId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(deleted) {
+            return ResponseEntity.ok().body("Donor deleted successfully");
+        }else {
+            return ResponseEntity.ok().body("Donor not found");
+        }
+       // return new ResponseEntity<>(HttpStatus.OK);
     }
     }

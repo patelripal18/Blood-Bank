@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/hospitals")
@@ -29,13 +30,14 @@ public class HospitalController {
 
     // Get a hospital by ID
     @GetMapping("/{hospitalId}")
-    public ResponseEntity<Hospital> getHospitalById(@PathVariable int hospitalId) {
-        Hospital hospital = hospitalService.getHospitalById(hospitalId);
-        if (hospital != null) {
-            return new ResponseEntity<>(hospital, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public Hospital getHospitalById(@PathVariable int hospitalId) {
+        Optional<Hospital> hospital = hospitalService.getHospitalById(hospitalId);
+        return hospitalService.getHospitalById(hospitalId).orElse(null);
+//        if (hospital != null) {
+//            return new ResponseEntity<>(hospital, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 
     // Create a new hospital
@@ -67,9 +69,10 @@ public class HospitalController {
 //        }
 //    }
     @DeleteMapping("/{hospitalId}")
-       public ResponseEntity<Void> deleteHospital(@PathVariable Long hospitalId) {
+       public ResponseEntity<String> deleteHospital(@PathVariable Long hospitalId) {
         boolean deleted = hospitalService.deleteHospital(hospitalId);
-        return new ResponseEntity<>(HttpStatus.OK);
+       // return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body("HospitalId deleted successfully");
     }
 }
 

@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sound.sampled.BooleanControl;
 import java.util.List;
 
 @RestController
@@ -34,13 +33,14 @@ public class UserController {
 
     // Get a user by ID
     @GetMapping("/{userId}")
-    public ResponseEntity<BloodUser> getUserById(@PathVariable int userId) {
+    public ResponseEntity<String> getUserById(@PathVariable int userId) {
         BloodUser user = userService.getUserById(userId);
-        if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok().body("UserId Get successfully");
+//        if (user != null) {
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 
     // Create a new user
@@ -52,13 +52,14 @@ public class UserController {
 
     // Update an existing user
     @PutMapping("/{userId}")
-    public ResponseEntity<BloodUser> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
+    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
         BloodUser user = userService.updateUser(userId, updatedUser);
-        if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok().body("UserId Updated successfully");
+//        if (user != null) {
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 
     // Delete a user by ID
@@ -72,9 +73,10 @@ public class UserController {
 //        }
 //    }
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Boolean> deletedUser(@PathVariable Long userId){
+    public ResponseEntity<String> deletedUser(@PathVariable Long userId){
         Boolean userDelete  = userService.deleteuser(userId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        //return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body("UserId deleted successfully");
     }
 }
 

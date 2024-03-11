@@ -3,6 +3,7 @@ import com.bloodbank.apis.BloodStatistics.model.BloodStatistics;
 //import com.bloodbank.apis.bloodstatistics.model.BloodStatistics;
 import com.bloodbank.apis.BloodStatistics.service.BloodStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //@Autowired
 @RestController
@@ -19,7 +20,7 @@ public class BloodStatisticsController {
         return bloodStatisticsService.getClass();
     }
 
-    @GetMapping("/{BloodStstisticsid}")
+    @GetMapping("/{id}")
     public BloodStatistics getBloodStatisticsById(@PathVariable int id) {
         return bloodStatisticsService.getBloodStatisticsById(id).orElse(null);
     }
@@ -34,10 +35,11 @@ public class BloodStatisticsController {
         return bloodStatisticsService.updateBloodStatistics(id, updatedStatistics).orElse(null);
     }
 
-    @DeleteMapping("/{BloodStatisticsid}")
-    public void deleteBloodStatistics(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBloodStatistics(@PathVariable int id) {
 
         bloodStatisticsService.deleteBloodStatistics(id);
+        return ResponseEntity.ok().body("BloodStatisticsId deleted successfully");
     }
 }
 

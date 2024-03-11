@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class Receiver {
     private String receivedate;
     private String receiverNo;
     private String unit;
+
+   
 }

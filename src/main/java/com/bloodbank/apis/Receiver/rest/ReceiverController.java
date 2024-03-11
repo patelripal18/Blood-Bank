@@ -7,11 +7,14 @@ package com.bloodbank.apis.Receiver.rest;
 import com.bloodbank.apis.Receiver.model.Receiver;
 import com.bloodbank.apis.Receiver.service.ReceiverService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping("/api/receivers")
@@ -30,12 +33,13 @@ public class ReceiverController {
     // Get a receiver by ID
     @GetMapping("/{receiverId}")
     public ResponseEntity<Receiver> getReceiverById(@PathVariable int receiverId) {
-        Receiver receiver = receiverService.getReceiverById(receiverId);
+       // return receiverService.getReceiverById(id).orElse(null);
+     Receiver receiver = receiverService.getReceiverById(receiverId);
         if (receiver != null) {
             return new ResponseEntity<>(receiver, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+      }
     }
 
     // Create a new receiver
@@ -67,10 +71,11 @@ public class ReceiverController {
 //        }
 //    }
     @DeleteMapping("/{receiverId}")
-    public ResponseEntity<Void> deleteReceiver(@PathVariable int receiverId) {
+    public ResponseEntity<String> deleteReceiver(@PathVariable int receiverId) {
         boolean deleted = receiverService.deleteReceiver(receiverId);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+       // return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok().body("ReceiverId deleted successfully");
     }
 }
 

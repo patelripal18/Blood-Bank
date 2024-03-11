@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReceiverService {
@@ -32,7 +33,8 @@ public class ReceiverService {
     public Receiver getReceiverById(int receiverId) {
         // Implement logic to retrieve receiver by ID
         // Return null if not found
-        return null;
+        Optional<Receiver> receiverOptional  = receiverRepository.findById(receiverId);
+        return receiverOptional.get();
     }
 
     // Create a new receiver
