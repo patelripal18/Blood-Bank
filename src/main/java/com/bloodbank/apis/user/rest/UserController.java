@@ -54,7 +54,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
         BloodUser Blooduser = userService.updateUser(userId, updatedUser);
-       // return ResponseEntity.ok().body("UserId Updated successfully");
+
         if (Blooduser != null) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
@@ -62,16 +62,7 @@ public class UserController {
         }
     }
 
-    // Delete a user by ID
-//    @DeleteMapping("/{userId}")
-//    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-//        boolean deleted = userService.deleteUser(userId);
-//        if (deleted) {
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
     @DeleteMapping("/{userId}")
     public ResponseEntity<String> deletedUser(@PathVariable Long userId){
         Boolean userDelete  = userService.deleteuser(userId);

@@ -1,9 +1,4 @@
 package com.bloodbank.apis.receiver.service;
-
-//public class receiverservice {
-//}
-//package com.bloodbank.apis.receiver.service;
-
 import com.bloodbank.apis.receiver.model.Receiver;
 import com.bloodbank.apis.receiver.repository.ReceiverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +34,7 @@ public class ReceiverService {
 
     // Create a new receiver
     public Receiver createReceiver(Receiver newReceiver) {
-       // newReceiver.setRId(nextReceiverId++);
-        receiverRepository.save(newReceiver);
+              receiverRepository.save(newReceiver);
         receivers.add(newReceiver);
         return newReceiver;
     }
@@ -53,29 +47,10 @@ public class ReceiverService {
         receiverRepository.save(updatedReceiver);
         receivers.add(updatedReceiver);
         return updatedReceiver;
-      //  return receiverOptional.get();
-//        for (int i = 0; i < receivers.size(); i++) {
-//            Receiver r = receivers.get(i);
-//            if (r.getRId() == receiverId) {
-//                updatedReceiver.setRId(receiverId);
-//                receivers.set(i, updatedReceiver);
-//                return updatedReceiver;
-//            }
-//        }
-       // return null;
+
     }
 
-    // Delete a receiver by ID
-//    public boolean deleteReceiver(int receiverId) {
-//        for (int i = 0; i < receivers.size(); i++) {
-//            Receiver r = receivers.get(i);
-//            if (r.getRId() == receiverId) {
-//                receivers.remove(i);
-//                return true;
-//            }
-//        }
-//        return false;
-  //  }
+
     public boolean deleteReceiver(int receiverId) {
         receiverRepository.deleteById(receiverId);
         return true;

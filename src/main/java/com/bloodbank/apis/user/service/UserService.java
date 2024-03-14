@@ -1,25 +1,4 @@
-//package com.bloodbank.apis.user.service;
-//
-//import com.bloodbank.apis.user.model.blooduser;
-//
-//import java.util.List;
-//
-//public class UserService {
-//    public List<blooduser> getAllUsers() {
-//    }
-//
-//    public blooduser getUserById(int userId) {
-//    }
-//
-//    public blooduser createUser(blooduser newUser) {
-//    }
-//
-//    public blooduser updateUser(int userId, blooduser updatedUser) {
-//    }
-//
-//    public boolean deleteUser(int userId) {
-//    }
-//}
+
 package com.bloodbank.apis.user.service;
 
 import com.bloodbank.apis.user.model.BloodUser;
@@ -65,30 +44,7 @@ public class UserService {
         userRepository.save(updatedUser);
         users.add(updatedUser);
         return updatedUser;
-//        for (int i = 0; i < users.size(); i++) {
-//            BloodUser user = users.get(i);
-//            if (user.getId() == userId) {
-//                updatedUser.setId(userId);
-//                users.set(i, updatedUser);
-//                return updatedUser;
-//            }
-//        }
-//        return null;
     }
-
-    // Delete a user by ID
-//    public boolean deleteUser(Long userId) {
-//        for (int i = 0; i < users.size(); i++) {
-//            BloodUser user = users.get(i);
-//            if (user.getId() == userId) {
-//                users.remove(i);
-//                userRepository.deleteById(userId);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
 
     public Boolean deleteuser (Long userId){
         userRepository.deleteById(userId);

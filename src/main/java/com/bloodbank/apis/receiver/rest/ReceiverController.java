@@ -1,8 +1,7 @@
 package com.bloodbank.apis.receiver.rest;
 
-//public class receivercontroller {
-//}
-//package com.bloodbank.apis.receiver.controller;
+
+
 
 import com.bloodbank.apis.receiver.model.Receiver;
 import com.bloodbank.apis.receiver.service.ReceiverService;
@@ -30,8 +29,7 @@ public class ReceiverController {
     // Get a receiver by ID
     @GetMapping("/{receiverId}")
     public ResponseEntity<Receiver> getReceiverById(@PathVariable int receiverId) {
-       // return receiverService.getReceiverById(id).orElse(null);
-     Receiver receiver = receiverService.getReceiverById(receiverId);
+      Receiver receiver = receiverService.getReceiverById(receiverId);
         if (receiver != null) {
             return new ResponseEntity<>(receiver, HttpStatus.OK);
         } else {
@@ -57,21 +55,12 @@ public class ReceiverController {
         }
     }
 
-    // Delete a receiver by ID
-//    @DeleteMapping("/{receiverId}")
-//    public ResponseEntity<Void> deleteReceiver(@PathVariable int receiverId) {
-//        boolean deleted = receiverService.deleteReceiver(receiverId);
-//        if (deleted) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
     @DeleteMapping("/{receiverId}")
     public ResponseEntity<String> deleteReceiver(@PathVariable int receiverId) {
         boolean deleted = receiverService.deleteReceiver(receiverId);
 
-       // return new ResponseEntity<>(HttpStatus.OK);
+
         return ResponseEntity.ok().body("ReceiverId deleted successfully");
     }
 }

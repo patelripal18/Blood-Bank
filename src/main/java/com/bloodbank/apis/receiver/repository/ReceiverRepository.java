@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReceiverRepository extends JpaRepository<Receiver, Integer> {
-//    Optional<receiverRepository> finduserrepositoryByIdAndIsActive(Long id , Boolean isActive);
+
 }
 
