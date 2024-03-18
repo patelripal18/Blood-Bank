@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
+  @Autowired
     private UserService userService;
 
     // Get all users
@@ -33,14 +33,18 @@ public class UserController {
 
     // Get a user by ID
     @GetMapping("/{userId}")
-    public ResponseEntity<String> getUserById(@PathVariable int userId) {
+//    public ResponseEntity<String> getUserById(@PathVariable int userId) {
+//        BloodUser user = userService.getUserById(userId);
+//        return ResponseEntity.ok().body("UserId Get successfully");
+//
+//    }
+    public ResponseEntity<BloodUser> getUserById(@PathVariable Long userId) {
         BloodUser user = userService.getUserById(userId);
-        return ResponseEntity.ok().body("UserId Get successfully");
-//        if (user != null) {
-//            return new ResponseEntity<>(user, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     // Create a new user
@@ -52,11 +56,11 @@ public class UserController {
 
     // Update an existing user
     @PutMapping("/{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
-        BloodUser Blooduser = userService.updateUser(userId, updatedUser);
+    public ResponseEntity<BloodUser> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
+        BloodUser bloodUser = userService.updateUser(userId, updatedUser);
 
-        if (Blooduser != null) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (bloodUser != null) {
+            return new ResponseEntity<>(bloodUser, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

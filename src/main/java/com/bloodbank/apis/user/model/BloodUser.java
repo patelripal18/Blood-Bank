@@ -1,20 +1,23 @@
 package com.bloodbank.apis.user.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
 
 @Setter
 @Getter
 @Table(name = "blood_bank")
 @Entity
-
+@Validated
 
 public class BloodUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "firstname is mandatory")
     private String firstname;
     private String lastname;
     private String address;
@@ -27,25 +30,10 @@ public class BloodUser {
     private String weight;
     private String height;
 
-    public BloodUser() {
 
-    }
 
-    public BloodUser(Long id, String firstname, String lastname, String address, String contactnumber, String email, String bloodGroup, String disease, String gender, String age, String weight, String height) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.contactnumber = contactnumber;
-        this.email = email;
-        this.bloodGroup = bloodGroup;
-        this.disease = disease;
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.height = height;
+
 
 
     }
 
-}

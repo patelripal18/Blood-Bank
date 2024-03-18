@@ -33,11 +33,7 @@ public class HospitalController {
     public Hospital getHospitalById(@PathVariable int hospitalId) {
         Optional<Hospital> hospital = hospitalService.getHospitalById(hospitalId);
         return hospitalService.getHospitalById(hospitalId).orElse(null);
-//        if (hospital != null) {
-//            return new ResponseEntity<>(hospital, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+//
     }
 
     // Create a new hospital
@@ -59,15 +55,7 @@ public class HospitalController {
     }
 
     // Delete a hospital by ID
-//    @DeleteMapping("/{hospitalId}")
-//    public ResponseEntity<Void> deleteHospital(@PathVariable int hospitalId) {
-//        boolean deleted = hospitalService.deleteHospital(hospitalId);
-//        if (deleted) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
     @DeleteMapping("/{hospitalId}")
        public ResponseEntity<String> deleteHospital(@PathVariable Long hospitalId) {
         boolean deleted = hospitalService.deleteHospital(hospitalId);

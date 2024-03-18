@@ -13,7 +13,7 @@ import lombok.Setter;
 public class Donor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private Long id;
+
     private Long donorId;
     private String userId;
     private String quantity;

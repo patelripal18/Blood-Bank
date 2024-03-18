@@ -22,22 +22,13 @@ public class DonorService {
     public List<Donor> getAllDonors() {
         return donors;
     }
-//     Get a donor by ID
-//    public Donor getDonorById(int donorId) {
-//        // Implement logic to retrieve donor by ID
-//        // Return null if not found
-//        return null;
-//    }
+
 
     // Create a new donor
-
-
     public Donor getDonerById(Long donerId) {
         Optional<Donor> donorOptional = donorRepository.findById(donerId);
         return donorOptional.get();
     }
-
-
     public Donor createDonor(Donor newDonor) {
         // newDonor.setDonorId(nextDonorId++);
         donors.add(newDonor);
@@ -54,29 +45,10 @@ public class DonorService {
         donors.add(updatedDonor);
         return updatedDonor;
 
-//        for (int i = 0; i < donors.size(); i++) {
-//            Donor d = donors.get(i);
-//            if (d.getDonorId() == donorId) {
-//                updatedDonor.setId(donorId);
-//                // updatedDonor.setId(donorId);
-//                donors.set(i, updatedDonor);
-//             //   return updatedDonor;
-//            }
-//        }
-//        return updatedDonor;
     }
 
     // Delete a donor by ID
-//    public boolean deleteDonor(int donorId) {
-//        for (int i = 0; i < donors.size(); i++) {
-//            Donor d = donors.get(i);
-//            if (d.getDonorId() == donorId) {
-//                donors.remove(i);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+
     public Boolean deleteDonor(Long userId) {
         donorRepository.deleteById(userId);
         return true;

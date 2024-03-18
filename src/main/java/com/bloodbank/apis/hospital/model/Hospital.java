@@ -17,37 +17,13 @@ public class Hospital {
     private String hospitalName;
     private String hAdress;
 
-    public Hospital(int hospitalId, String hospitalName, String HAdress) {
-        this.hospitalId = hospitalId;
-        hospitalName = hospitalName;
-        this.hAdress= HAdress;
-    }
-
-    public Hospital(){
-
-    }
-
-//    public int getHospitalId() {
-//        return hospitalId;
-//    }
-//
-//    public void setHospitalId(int hospitalId) {
+//    public Hospital(int hospitalId, String hospitalName, String HAdress) {
 //        this.hospitalId = hospitalId;
+//        hospitalName = hospitalName;
+//        this.hAdress = HAdress;
 //    }
+
+//    public Hospital() {
 //
-//    public String getHospitalName() {
-//        return HospitalName;
-//    }
-//
-//    public void setHospitalName(String hospitalName) {
-//        HospitalName = hospitalName;
-//    }
-//
-//    public String getHAdress() {
-//        return HAdress;
-//    }
-//
-//    public void setHAdress(String HAdress) {
-//        this.HAdress = HAdress;
 //    }
 }

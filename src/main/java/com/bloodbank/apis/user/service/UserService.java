@@ -1,6 +1,7 @@
 
 package com.bloodbank.apis.user.service;
 
+import com.bloodbank.apis.receiver.model.Receiver;
 import com.bloodbank.apis.user.model.BloodUser;
 import com.bloodbank.apis.user.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,10 @@ public class UserService {
     }
 
     // Get a user by ID
-    public BloodUser getUserById(int userId) {
-        // Implement logic to retrieve user by ID
-        // Return null if not found
-        return null;
+    public BloodUser getUserById(Long userId) {
+        Optional<BloodUser> userOptional  = userRepository.findById(userId);
+        return userOptional.get();
     }
-
     // Create a new user
     public BloodUser createUser(BloodUser newUser) {
         users.add(newUser);
@@ -49,5 +48,6 @@ public class UserService {
     public Boolean deleteuser (Long userId){
         userRepository.deleteById(userId);
         return true;
+
     }
 }

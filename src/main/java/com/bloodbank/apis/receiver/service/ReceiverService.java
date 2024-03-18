@@ -26,15 +26,13 @@ public class ReceiverService {
 
     // Get a receiver by ID
     public Receiver getReceiverById(int receiverId) {
-        // Implement logic to retrieve receiver by ID
-        // Return null if not found
         Optional<Receiver> receiverOptional  = receiverRepository.findById(receiverId);
         return receiverOptional.get();
     }
 
     // Create a new receiver
     public Receiver createReceiver(Receiver newReceiver) {
-              receiverRepository.save(newReceiver);
+        receiverRepository.save(newReceiver);
         receivers.add(newReceiver);
         return newReceiver;
     }

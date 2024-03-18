@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface DonorRepository extends JpaRepository<Donor,Long > {
-//    Optional<donorRepository>findByIdAndIsActive(Long id , Boolean isActive);
-    Optional<Donor> findByDonorId(Long donerId);
+
+//    Optional<Donor> findByDonorId(Long donerId);
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 public class HospitalService {
-@Autowired
+     @Autowired
     private final HospitalRepository hospitalRepository;
     private List<Hospital> hospitals = new ArrayList<>();
     private int nextHospitalId = 1;
@@ -33,14 +33,7 @@ public class HospitalService {
     public Optional<Hospital> getHospitalById(int id) {
         return hospitalRepository.findById(Long.valueOf(id));
     }
-    // Get a hospital by ID
-//    public Receiver getHospitalById(int hospitalId) {
-//        // Implement logic to retrieve hospital by ID
-//        // Return null if not found
-//        //return null;
-//        Optional<Receiver> receiverOptional  = hospitalRepository.findById(hospitalId);
-//        return receiverOptional.get();
-//    }
+
 
     // Create a new hospital
     public Hospital createHospital(Hospital newHospital) {
@@ -57,27 +50,11 @@ public class HospitalService {
         hospitalRepository.save(updatedHospital);
         hospitals.add(updatedHospital);
         return updatedHospital;
-//        for (int i = 0; i < hospitals.size(); i++) {
-//            Hospital h = hospitals.get(i);
-//            if (h.getHospitalId() == hospitalId) {
-//                updatedHospital.setHospitalId(hospitalId);
-//                hospitals.set(i, updatedHospital);
-//                return updatedHospital;
-//            }
-//        }
-//        return null;
+
     }
 
     // Delete a hospital by ID
-//    public boolean deleteHospital(int hospitalId) {
-//        for (int i = 0; i < hospitals.size(); i++) {
-//            Hospital h = hospitals.get(i);
-//            if (h.getHospitalId() == hospitalId) {
-//                hospitals.remove(i);
-//                return true;
-//            }
-//        }
-//        return false;
+
     public boolean deleteHospital(Long hospitalId) {
         hospitalRepository.deleteById( hospitalId);
         return true;

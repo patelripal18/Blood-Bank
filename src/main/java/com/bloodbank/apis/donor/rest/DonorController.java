@@ -1,9 +1,5 @@
 package com.bloodbank.apis.donor.rest;
 
-//public class donorcontroller {
-//}
-//package com.bloodbank.apis.donor.controller;
-
 import com.bloodbank.apis.donor.model.Donor;
 import com.bloodbank.apis.donor.service.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/donors")
 public class DonorController {
 
-    @Autowired
+   // @Autowired
     private DonorService donorService;
 
     // Get all donors
@@ -36,13 +32,7 @@ public class DonorController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-     //   return donorService.getBloodStatisticsById(id).orElse(null);
-//        Donor donor = donorService.getDonorById(donorId);
-//        if (donor != null) {
-//            return new ResponseEntity<>(donor, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//      }
+
     }
 
     // Create a new donor
@@ -58,7 +48,7 @@ public class DonorController {
     public ResponseEntity<String> updateDonor(@PathVariable Long donorId, @RequestBody Donor updatedDonor) {
         Donor donor = donorService.updateDonor(donorId, updatedDonor);
         if (donor != null) {
-           // return ResponseEntity.ok().body("Donor updated successfully");
+
 
             return new ResponseEntity<>( HttpStatus.OK);
         } else {
@@ -67,15 +57,7 @@ public class DonorController {
     }
 
     // Delete a donor by ID
-//    @DeleteMapping("/{donorId}")
-//    public ResponseEntity<Void> deleteDonor(@PathVariable int donorId) {
-//        boolean deleted = donorService.deleteDonor(donorId);
-//        if (deleted) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
     @DeleteMapping("/{donorId}")
   public ResponseEntity<String> deleteDonor(@PathVariable Long donorId) {
         boolean deleted = donorService.deleteDonor(donorId);
@@ -84,6 +66,6 @@ public class DonorController {
         }else {
             return ResponseEntity.ok().body("Donor not found");
         }
-       // return new ResponseEntity<>(HttpStatus.OK);
+
     }
     }
