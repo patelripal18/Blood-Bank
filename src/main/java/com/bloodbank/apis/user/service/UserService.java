@@ -1,7 +1,6 @@
 
 package com.bloodbank.apis.user.service;
 
-import com.bloodbank.apis.receiver.model.Receiver;
 import com.bloodbank.apis.user.model.BloodUser;
 import com.bloodbank.apis.user.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
