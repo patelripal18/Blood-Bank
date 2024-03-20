@@ -1,4 +1,5 @@
 package com.bloodbank.apis.receiver.service;
+import com.bloodbank.apis.donor.model.Donor;
 import com.bloodbank.apis.receiver.model.Receiver;
 import com.bloodbank.apis.receiver.repository.ReceiverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,11 @@ import java.util.Optional;
 @Service
 public class ReceiverService {
    @Autowired
-    private final ReceiverRepository receiverRepository;
+    private  ReceiverRepository receiverRepository;
     private List<Receiver> receivers = new ArrayList<>();
-    private int nextReceiverId = 1;
-
-    public ReceiverService(ReceiverRepository receiverRepository) {
-        this.receiverRepository = receiverRepository;
-    }
-
     // Get all receivers
     public List<Receiver> getAllReceivers() {
-        return receivers;
+      return receiverRepository.findAll();
     }
 
     // Get a receiver by ID
@@ -33,7 +28,6 @@ public class ReceiverService {
     // Create a new receiver
     public Receiver createReceiver(Receiver newReceiver) {
         receiverRepository.save(newReceiver);
-        receivers.add(newReceiver);
         return newReceiver;
     }
 
@@ -41,14 +35,9 @@ public class ReceiverService {
     public Receiver updateReceiver(int receiverId, Receiver updatedReceiver) {
 
         Optional<Receiver> receiverOptional  = receiverRepository.findById(receiverId);
-        updatedReceiver.setRId(receiverId);
         receiverRepository.save(updatedReceiver);
-        receivers.add(updatedReceiver);
         return updatedReceiver;
-
     }
-
-
     public boolean deleteReceiver(int receiverId) {
         receiverRepository.deleteById(receiverId);
         return true;

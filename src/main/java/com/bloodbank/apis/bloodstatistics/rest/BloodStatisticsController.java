@@ -5,20 +5,20 @@ import com.bloodbank.apis.bloodstatistics.service.BloodStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//@Autowired
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/bloodstatistics")
 public class BloodStatisticsController {
+
     @Autowired
-    private final BloodStatisticsService bloodStatisticsService;
- //   @Autowired
-    public BloodStatisticsController(BloodStatisticsService bloodStatisticsService) {
-        this.bloodStatisticsService = bloodStatisticsService;
+    private BloodStatisticsService bloodStatisticsService;
+  @GetMapping
+    public List<BloodStatistics> getAllBloodStatistics() {
+        return bloodStatisticsService.getAllBloodStatistics();
     }
-    @GetMapping
-    public Class<? extends BloodStatisticsService> getAllBloodStatistics() {
-        return bloodStatisticsService.getClass();
-    }
+
 
     @GetMapping("/{id}")
     public BloodStatistics getBloodStatisticsById(@PathVariable int id) {

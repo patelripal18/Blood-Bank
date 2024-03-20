@@ -13,12 +13,12 @@ import lombok.Setter;
 public class Receiver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int rId;
-    private String uId;
+    private int id;
+    private String userId;
     private String quantity;
-    private String hId;
-    private String bloodgroup;
-    private String receivedate;
+    private String hospitalId;
+    private String bloodGroup;
+    private String receiveDate;
     private String receiverNo;
     private String unit;
 

@@ -18,10 +18,10 @@ public class BloodUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "firstname is mandatory")
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String address;
-    private String contactnumber;
+    private String contactNumber;
     private String email;
     private String bloodGroup;
     private String disease;

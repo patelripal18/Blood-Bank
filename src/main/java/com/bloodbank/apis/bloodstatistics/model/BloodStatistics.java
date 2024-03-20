@@ -14,7 +14,7 @@ public class BloodStatistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String bloodtype;
+    private String bloodType;
     private String quantity;
 
 

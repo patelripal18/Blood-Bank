@@ -16,39 +16,33 @@ import java.util.Optional;
 @Service
 public class HospitalService {
      @Autowired
-    private final HospitalRepository hospitalRepository;
+    private HospitalRepository hospitalRepository;
     private List<Hospital> hospitals = new ArrayList<>();
-    private int nextHospitalId = 1;
 
-    public HospitalService(HospitalRepository hospitalRepository) {
-        this.hospitalRepository = hospitalRepository;
-    }
+
 
     // Get all hospitals
     public List<Hospital> getAllHospitals() {
-        return hospitals;
+        return hospitalRepository.findAll();
+
     }
 
 
-    public Optional<Hospital> getHospitalById(int id) {
-        return hospitalRepository.findById(Long.valueOf(id));
+    public Optional<Hospital> getHospitalById(Long id) {
+        return hospitalRepository.findById(id);
     }
 
 
     // Create a new hospital
     public Hospital createHospital(Hospital newHospital) {
-      //  newHospital.setHospitalId(nextHospitalId++);
-        hospitals.add(newHospital);
         hospitalRepository.save(newHospital);
         return newHospital;
     }
 
     // Update an existing hospital
-    public Hospital updateHospital(int hospitalId, Hospital updatedHospital) {
+    public Hospital updateHospital(Long hospitalId, Hospital updatedHospital) {
         Optional<Hospital> hospitalOptional  = hospitalRepository.findById((long) hospitalId);
-        updatedHospital.setHospitalId(hospitalId);
         hospitalRepository.save(updatedHospital);
-        hospitals.add(updatedHospital);
         return updatedHospital;
 
     }

@@ -1,8 +1,5 @@
 package com.bloodbank.apis.hospital.rest;
 
-//public class hospitalcontroller {
-//}
-//package com.bloodbank.apis.hospital.controller;
 
 import com.bloodbank.apis.hospital.model.Hospital;
 import com.bloodbank.apis.hospital.service.HospitalService;
@@ -30,7 +27,7 @@ public class HospitalController {
 
     // Get a hospital by ID
     @GetMapping("/{hospitalId}")
-    public Hospital getHospitalById(@PathVariable int hospitalId) {
+    public Hospital getHospitalById(@PathVariable Long hospitalId) {
         Optional<Hospital> hospital = hospitalService.getHospitalById(hospitalId);
         return hospitalService.getHospitalById(hospitalId).orElse(null);
 //
@@ -45,7 +42,7 @@ public class HospitalController {
 
     // Update an existing hospital
     @PutMapping("/{hospitalId}")
-    public ResponseEntity<Hospital> updateHospital(@PathVariable int hospitalId, @RequestBody Hospital updatedHospital) {
+    public ResponseEntity<Hospital> updateHospital(@PathVariable Long hospitalId, @RequestBody Hospital updatedHospital) {
         Hospital hospital = hospitalService.updateHospital(hospitalId, updatedHospital);
         if (hospital != null) {
             return new ResponseEntity<>(hospital, HttpStatus.OK);
@@ -59,7 +56,6 @@ public class HospitalController {
     @DeleteMapping("/{hospitalId}")
        public ResponseEntity<String> deleteHospital(@PathVariable Long hospitalId) {
         boolean deleted = hospitalService.deleteHospital(hospitalId);
-       // return new ResponseEntity<>(HttpStatus.OK);
         return ResponseEntity.ok().body("HospitalId deleted successfully");
     }
 }

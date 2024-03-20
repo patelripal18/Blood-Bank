@@ -13,17 +13,9 @@ import lombok.Setter;
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int hospitalId;
+    private Long id;
     private String hospitalName;
-    private String hAdress;
+    private String hospitalAdress;
 
-//    public Hospital(int hospitalId, String hospitalName, String HAdress) {
-//        this.hospitalId = hospitalId;
-//        hospitalName = hospitalName;
-//        this.hAdress = HAdress;
-//    }
 
-//    public Hospital() {
-//
-//    }
 }

@@ -59,8 +59,6 @@ public class ReceiverController {
     @DeleteMapping("/{receiverId}")
     public ResponseEntity<String> deleteReceiver(@PathVariable int receiverId) {
         boolean deleted = receiverService.deleteReceiver(receiverId);
-
-
         return ResponseEntity.ok().body("ReceiverId deleted successfully");
     }
 }

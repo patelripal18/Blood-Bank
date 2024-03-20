@@ -14,13 +14,13 @@ public class Donor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long donorId;
+    private Long id;
     private String userId;
     private String quantity;
     private String unit;
-    private String hId;
-    private String bloodcollectDate;
+    private String hospitalId;
+    private String bloodCollectDate;
 
-    public void setId(int donorId) {
+    public void setId(Long donorId) {
     }
 }

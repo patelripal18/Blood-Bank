@@ -20,7 +20,7 @@ public class UserService {
 
     // Get all users
     public List<BloodUser> getAllUsers() {
-        return users;
+        return userRepository.findAll();
     }
 
     // Get a user by ID
@@ -28,9 +28,9 @@ public class UserService {
         Optional<BloodUser> userOptional  = userRepository.findById(userId);
         return userOptional.get();
     }
+
     // Create a new user
     public BloodUser createUser(BloodUser newUser) {
-        users.add(newUser);
         userRepository.save(newUser);
         return newUser;
     }
@@ -38,9 +38,7 @@ public class UserService {
     // Update an existing user
     public BloodUser updateUser(Long userId, BloodUser updatedUser) {
         Optional<BloodUser> bloodUser  = userRepository.findById(userId);
-        updatedUser.setId(userId);
         userRepository.save(updatedUser);
-        users.add(updatedUser);
         return updatedUser;
     }
 
