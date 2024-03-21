@@ -16,7 +16,7 @@ public class BloodUserService {
   @Autowired
   public BloodUserRepository userRepository;
 
-  private List<BloodUser> users = new ArrayList<>();// remove
+
 
 
   public List<BloodUser> getAllUsers() {

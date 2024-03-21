@@ -48,5 +48,9 @@ public class HospitalService {
     hospitalRepository.deleteById(hospitalId);
     return true;
   }
+
+  public List<Hospital> getAllHospitals() {
+    return hospitalRepository.findAll();
+  }
 }
 
