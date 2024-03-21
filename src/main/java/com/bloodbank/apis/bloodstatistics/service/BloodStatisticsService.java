@@ -30,12 +30,11 @@ public class BloodStatisticsService {
     return bloodStatisticsRepository.save(bloodStatistics);
   }
 
-  public Optional<BloodStatistics> updateBloodStatistics(int id,
-      BloodStatistics updatedStatistics) {
+  public Optional<BloodStatistics> updateBloodStatistics(int id, BloodStatistics updatedStatistics) {
     if (bloodStatisticsRepository.existsById(id)) {
       return Optional.of(bloodStatisticsRepository.save(updatedStatistics));
     } else {
-      return Optional.empty(); // Handle not found case
+      return Optional.empty();
     }
   }
 

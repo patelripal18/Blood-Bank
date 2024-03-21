@@ -22,57 +22,53 @@ import java.util.List;
 public class UserController {
 
   @Autowired
-    private UserService userService;
+  private UserService userService;
 
-    // Get all users
-    @GetMapping
-    public ResponseEntity<List<BloodUser>> getAllUsers() {
-        List<BloodUser> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+
+  @GetMapping
+  public ResponseEntity<List<BloodUser>> getAllUsers() {
+    List<BloodUser> users = userService.getAllUsers();
+    return new ResponseEntity<>(users, HttpStatus.OK);
+  }
+
+
+  @GetMapping("/{userId}")
+
+  public ResponseEntity<BloodUser> getUserById(@PathVariable Long userId) {
+    BloodUser user = userService.getUserById(userId);
+    if (user != null) {
+      return new ResponseEntity<>(user, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
 
-    // Get a user by ID
-    @GetMapping("/{userId}")
-//    public ResponseEntity<String> getUserById(@PathVariable int userId) {
-//        BloodUser user = userService.getUserById(userId);
-//        return ResponseEntity.ok().body("UserId Get successfully");
-//
-//    }
-    public ResponseEntity<BloodUser> getUserById(@PathVariable Long userId) {
-        BloodUser user = userService.getUserById(userId);
-        if (user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+  @PostMapping("/create")
+  public ResponseEntity<BloodUser> createUser(@RequestBody BloodUser newUser) {
+    BloodUser createdUser = userService.createUser(newUser);
+    return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+  }
+
+
+  @PutMapping("/{userId}")
+  public ResponseEntity<BloodUser> updateUser(@PathVariable Long userId,
+      @RequestBody BloodUser updatedUser) {
+    BloodUser bloodUser = userService.updateUser(userId, updatedUser);
+
+    if (bloodUser != null) {
+      return new ResponseEntity<>(bloodUser, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    // Create a new user
-    @PostMapping("/create")
-    public ResponseEntity<BloodUser> createUser(@RequestBody BloodUser newUser) {
-        BloodUser createdUser = userService.createUser(newUser);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-    }
-
-    // Update an existing user
-    @PutMapping("/{userId}")
-    public ResponseEntity<BloodUser> updateUser(@PathVariable Long userId, @RequestBody BloodUser updatedUser) {
-        BloodUser bloodUser = userService.updateUser(userId, updatedUser);
-
-        if (bloodUser != null) {
-            return new ResponseEntity<>(bloodUser, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+  }
 
 
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deletedUser(@PathVariable Long userId){
-        Boolean userDelete  = userService.deleteuser(userId);
-        //return new ResponseEntity<>(HttpStatus.OK);
-        return ResponseEntity.ok().body("UserId deleted successfully");
-    }
+  @DeleteMapping("/{userId}")
+  public ResponseEntity<String> deletedUser(@PathVariable Long userId) {
+    Boolean userDelete = userService.deleteuser(userId);
+    return ResponseEntity.ok().body("UserId deleted successfully");
+  }
 }
 
 

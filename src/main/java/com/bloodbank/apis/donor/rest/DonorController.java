@@ -16,14 +16,14 @@ public class DonorController {
   @Autowired
   private DonorService donorService;
 
-  // Get all donors
+
   @GetMapping
   public ResponseEntity<List<Donor>> getAllDonors() {
     List<Donor> donors = donorService.getAllDonors();
     return new ResponseEntity<>(donors, HttpStatus.OK);
   }
 
-  // Get a donor by ID
+
   @GetMapping("/{donorId}")
   public ResponseEntity<Donor> getDonorById(@PathVariable Long donorId) {
     Donor donor = donorService.getDonerById(donorId);
@@ -35,7 +35,7 @@ public class DonorController {
 
   }
 
-  // Create a new donor
+
   @PostMapping("/create")
   public ResponseEntity<Donor> createDonor(@RequestBody Donor newDonor) {
     Donor createdDonor = donorService.createDonor(newDonor);
@@ -43,28 +43,27 @@ public class DonorController {
 
   }
 
-  // Update an existing donor
+
   @PutMapping("/{donorId}")
   public ResponseEntity<Donor> updateDonor(@PathVariable Long donorId,
       @RequestBody Donor updatedDonor) {
     Donor donor = donorService.updateDonor(donorId, updatedDonor);
     if (donor != null) {
-      return new ResponseEntity<>(donor,HttpStatus.OK);
+      return new ResponseEntity<>(donor, HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
-  // Delete a donor by ID
 
   @DeleteMapping("/{donorId}")
   public ResponseEntity<String> deleteDonor(@PathVariable Long donorId) {
-    boolean deleted = donorService.deleteDonor(donorId);
-    if (deleted) {
-      return ResponseEntity.ok().body("Donor deleted successfully");
-    } else {
-      return ResponseEntity.ok().body("Donor not found");
-    }
 
+    boolean deleted = donorService.deleteDonor(donorId);
+    return ResponseEntity.ok().body("Donor deleted successfully");
   }
+
 }
+
+
+

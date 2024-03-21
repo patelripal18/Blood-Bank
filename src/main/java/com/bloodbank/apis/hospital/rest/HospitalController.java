@@ -1,6 +1,5 @@
 package com.bloodbank.apis.hospital.rest;
 
-
 import com.bloodbank.apis.hospital.model.Hospital;
 import com.bloodbank.apis.hospital.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +17,29 @@ public class HospitalController {
     @Autowired
     private HospitalService hospitalService;
 
-    // Get all hospitals
+
     @GetMapping
     public ResponseEntity<List<Hospital>> getAllHospitals() {
         List<Hospital> hospitals = hospitalService.getAllHospitals();
         return new ResponseEntity<>(hospitals, HttpStatus.OK);
     }
 
-    // Get a hospital by ID
+
     @GetMapping("/{hospitalId}")
     public Hospital getHospitalById(@PathVariable Long hospitalId) {
-        Optional<Hospital> hospital = hospitalService.getHospitalById(hospitalId);
-        return hospitalService.getHospitalById(hospitalId).orElse(null);
-//
+        Hospital hospital = hospitalService.getHospitalById(hospitalId);
+        return hospitalService.getHospitalById(hospitalId);
+
     }
 
-    // Create a new hospital
+
     @PostMapping("/create")
     public ResponseEntity<Hospital> createHospital(@RequestBody Hospital newHospital) {
         Hospital createdHospital = hospitalService.createHospital(newHospital);
         return new ResponseEntity<>(createdHospital, HttpStatus.CREATED);
     }
 
-    // Update an existing hospital
+
     @PutMapping("/{hospitalId}")
     public ResponseEntity<Hospital> updateHospital(@PathVariable Long hospitalId, @RequestBody Hospital updatedHospital) {
         Hospital hospital = hospitalService.updateHospital(hospitalId, updatedHospital);
@@ -51,7 +50,7 @@ public class HospitalController {
         }
     }
 
-    // Delete a hospital by ID
+
 
     @DeleteMapping("/{hospitalId}")
        public ResponseEntity<String> deleteHospital(@PathVariable Long hospitalId) {

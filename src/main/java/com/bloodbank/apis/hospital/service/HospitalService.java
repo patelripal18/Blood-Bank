@@ -4,6 +4,7 @@
 //}
 package com.bloodbank.apis.hospital.service;
 
+import com.bloodbank.apis.donor.model.Donor;
 import com.bloodbank.apis.hospital.model.Hospital;
 import com.bloodbank.apis.hospital.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +22,19 @@ public class HospitalService {
 
 
 
-    // Get all hospitals
+
     public List<Hospital> getAllHospitals() {
         return hospitalRepository.findAll();
 
     }
 
 
-    public Optional<Hospital> getHospitalById(Long id) {
-        return hospitalRepository.findById(id);
+    public Hospital getHospitalById(Long id) {
+        return hospitalRepository.findById(id).get();
     }
 
 
-    // Create a new hospital
+
     public Hospital createHospital(Hospital newHospital) {
         hospitalRepository.save(newHospital);
         return newHospital;
@@ -41,7 +42,11 @@ public class HospitalService {
 
     // Update an existing hospital
     public Hospital updateHospital(Long hospitalId, Hospital updatedHospital) {
-        Optional<Hospital> hospitalOptional  = hospitalRepository.findById((long) hospitalId);
+
+        Optional<Hospital> hospitalOptional  = hospitalRepository.findById(hospitalId);
+        Hospital updateHospital = hospitalOptional.get();
+        updateHospital.setHospitalName(updatedHospital.getHospitalName());
+        updateHospital.setHospitalAddress(updatedHospital.getHospitalAddress());
         hospitalRepository.save(updatedHospital);
         return updatedHospital;
 
