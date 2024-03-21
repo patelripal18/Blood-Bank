@@ -1,7 +1,4 @@
-//package com.bloodbank.apis.hospital.service;
 
-//public class hospitalservice {
-//}
 package com.bloodbank.apis.hospital.service;
 
 import com.bloodbank.apis.donor.model.Donor;
