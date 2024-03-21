@@ -16,47 +16,37 @@ import java.util.Optional;
 
 @Service
 public class HospitalService {
-     @Autowired
-    private HospitalRepository hospitalRepository;
-    private List<Hospital> hospitals = new ArrayList<>();
+
+  @Autowired
+  private HospitalRepository hospitalRepository;
 
 
+  public Hospital getHospitalById(Long id) {
+    return hospitalRepository.findById(id).get();
+  }
 
 
-    public List<Hospital> getAllHospitals() {
-        return hospitalRepository.findAll();
+  public Hospital createHospital(Hospital newHospital) {
+    hospitalRepository.save(newHospital);
+    return newHospital;
+  }
 
-    }
+  // Update an existing hospital
+  public Hospital updateHospital(Long hospitalId, Hospital hospital) {
+
+    Optional<Hospital> hospitalOptional = hospitalRepository.findById(hospitalId);
+    Hospital updateHospital = hospitalOptional.get();
+    updateHospital.setHospitalName(hospital.getHospitalName());
+    updateHospital.setHospitalAddress(hospital.getHospitalAddress());
+    Hospital updatedHospital = hospitalRepository.save(updateHospital);
+    return updatedHospital;
+
+  }
 
 
-    public Hospital getHospitalById(Long id) {
-        return hospitalRepository.findById(id).get();
-    }
-
-
-
-    public Hospital createHospital(Hospital newHospital) {
-        hospitalRepository.save(newHospital);
-        return newHospital;
-    }
-
-    // Update an existing hospital
-    public Hospital updateHospital(Long hospitalId, Hospital updatedHospital) {
-
-        Optional<Hospital> hospitalOptional  = hospitalRepository.findById(hospitalId);
-        Hospital updateHospital = hospitalOptional.get();
-        updateHospital.setHospitalName(updatedHospital.getHospitalName());
-        updateHospital.setHospitalAddress(updatedHospital.getHospitalAddress());
-        hospitalRepository.save(updatedHospital);
-        return updatedHospital;
-
-    }
-
-    // Delete a hospital by ID
-
-    public boolean deleteHospital(Long hospitalId) {
-        hospitalRepository.deleteById( hospitalId);
-        return true;
-    }
+  public boolean deleteHospital(Long hospitalId) {
+    hospitalRepository.deleteById(hospitalId);
+    return true;
+  }
 }
 

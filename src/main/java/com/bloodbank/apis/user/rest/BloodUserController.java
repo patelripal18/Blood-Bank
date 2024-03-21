@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 //}
 //package com.bloodbank.apis.user.controller;
 
-import com.bloodbank.apis.user.service.UserService;
+import com.bloodbank.apis.user.service.BloodUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +19,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class BloodUserController {
 
   @Autowired
-  private UserService userService;
+  private BloodUserService userService;
 
 
   @GetMapping

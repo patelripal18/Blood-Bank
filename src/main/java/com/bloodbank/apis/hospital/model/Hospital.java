@@ -11,11 +11,12 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Hospital {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String hospitalName;
-    private String hospitalAddress;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String hospitalName;
+  private String hospitalAddress;
 
 
 }

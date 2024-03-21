@@ -7,7 +7,7 @@ import com.bloodbank.apis.donor.model.Donor;
 import java.util.Optional;
 
 @Repository
-public interface DonorRepository extends JpaRepository<Donor,Long > {
+public interface DonorRepository extends JpaRepository<Donor, Long> {
 
 
 }

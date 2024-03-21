@@ -11,16 +11,16 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Receiver {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String userId;
-    private String quantity;
-    private String hospitalId;
-    private String bloodGroup;
-    private String receiveDate;
-    private String receiverNo;
-    private String unit;
 
-   
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String userId;
+  private String quantity;
+  private String hospitalId;
+  private String bloodGroup;
+  private String receiveDate;
+  private String contactNumber;
+
+
 }

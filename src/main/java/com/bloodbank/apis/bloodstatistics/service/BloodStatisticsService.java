@@ -22,26 +22,28 @@ public class BloodStatisticsService {
     return bloodStatisticsRepository.findAll();
   }
 
-  public Optional<BloodStatistics> getBloodStatisticsById(int id) {
-    return bloodStatisticsRepository.findById(id);
+  public BloodStatistics getBloodStatisticsById(Long id) {
+    Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findById(id);
+    return bloodStatisticsOptional.get();
   }
 
-  public BloodStatistics addBloodStatistics(BloodStatistics bloodStatistics) {
-    return bloodStatisticsRepository.save(bloodStatistics);
+  public BloodStatistics createBloodStatics(BloodStatistics newBloodStatics) {
+    bloodStatisticsRepository.save(newBloodStatics);
+    return newBloodStatics;
   }
 
-  public Optional<BloodStatistics> updateBloodStatistics(int id, BloodStatistics updatedStatistics) {
-    if (bloodStatisticsRepository.existsById(id)) {
-      return Optional.of(bloodStatisticsRepository.save(updatedStatistics));
-    } else {
-      return Optional.empty();
-    }
+  public BloodStatistics updateBloodStatistics(Long id, BloodStatistics bloodStatistics) {
+    Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findById(id);
+    BloodStatistics updateBloodStatics = bloodStatisticsOptional.get();
+    updateBloodStatics.setBloodGroup(bloodStatistics.getBloodGroup());
+    updateBloodStatics.setQuantity(bloodStatistics.getQuantity());
+    BloodStatistics updatedBloodStatistics = bloodStatisticsRepository.save(updateBloodStatics);
+    return updatedBloodStatistics;
   }
 
-  public void deleteBloodStatistics(int id) {
+  public void deleteBloodStatistics(Long id) {
     bloodStatisticsRepository.deleteById(id);
   }
-
 }
 
 

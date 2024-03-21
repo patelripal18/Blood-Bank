@@ -11,16 +11,15 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Donor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;
-    private String userId;
-    private String quantity;
-    private String unit;
-    private String hospitalId;
-    private String bloodCollectDate;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    public void setId(Long donorId) {
-    }
+  private Long id;
+  private String userId;
+  private String quantity;
+  private String hospitalId;
+  private String bloodCollectDate;
+
+
 }

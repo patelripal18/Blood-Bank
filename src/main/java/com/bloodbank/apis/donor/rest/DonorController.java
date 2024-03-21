@@ -26,7 +26,7 @@ public class DonorController {
 
   @GetMapping("/{donorId}")
   public ResponseEntity<Donor> getDonorById(@PathVariable Long donorId) {
-    Donor donor = donorService.getDonerById(donorId);
+    Donor donor = donorService.getDonorById(donorId);
     if (donor != null) {
       return new ResponseEntity<>(donor, HttpStatus.OK);
     } else {
@@ -58,8 +58,7 @@ public class DonorController {
 
   @DeleteMapping("/{donorId}")
   public ResponseEntity<String> deleteDonor(@PathVariable Long donorId) {
-
-    boolean deleted = donorService.deleteDonor(donorId);
+    donorService.deleteDonor(donorId);
     return ResponseEntity.ok().body("Donor deleted successfully");
   }
 

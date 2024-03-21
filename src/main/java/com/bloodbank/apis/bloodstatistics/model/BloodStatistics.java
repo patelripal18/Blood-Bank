@@ -11,11 +11,12 @@ import lombok.Setter;
 @Getter
 @Entity
 public class BloodStatistics {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String bloodType;
-    private String quantity;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String bloodGroup;
+  private String quantity;
 
 
 }
