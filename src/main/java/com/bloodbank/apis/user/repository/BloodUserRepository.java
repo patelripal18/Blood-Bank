@@ -1,4 +1,4 @@
-package com.bloodbank.apis.user.repo;
+package com.bloodbank.apis.user.repository;
 
 import com.bloodbank.apis.user.model.BloodUser;
 

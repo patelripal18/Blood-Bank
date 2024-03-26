@@ -35,8 +35,7 @@ public class BloodStatisticsController {
   }
 
   @PostMapping
-  public ResponseEntity<BloodStatistics> createBloodStatics(
-      @RequestBody BloodStatistics newbloodStatistics) {
+  public ResponseEntity<BloodStatistics> createBloodStatics(@RequestBody BloodStatistics newbloodStatistics) {
     BloodStatistics createdbloodStatics = bloodStatisticsService.createBloodStatics(
         newbloodStatistics);
     return new ResponseEntity<>(createdbloodStatics, HttpStatus.CREATED);

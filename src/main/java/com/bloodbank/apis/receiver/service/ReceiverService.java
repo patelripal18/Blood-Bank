@@ -14,7 +14,6 @@ public class ReceiverService {
   @Autowired
   private ReceiverRepository receiverRepository;
 
-
   public List<Receiver> getAllReceivers() {
     return receiverRepository.findAll();
   }

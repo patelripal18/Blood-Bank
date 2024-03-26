@@ -44,6 +44,7 @@ public class BloodUserController {
   }
 
 
+
   @PostMapping("/create")
   public ResponseEntity<BloodUser> createUser(@RequestBody BloodUser newUser) {
     BloodUser createdUser = userService.createUser(newUser);

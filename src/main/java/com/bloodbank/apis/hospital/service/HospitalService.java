@@ -1,13 +1,11 @@
 
 package com.bloodbank.apis.hospital.service;
 
-import com.bloodbank.apis.donor.model.Donor;
+
 import com.bloodbank.apis.hospital.model.Hospital;
 import com.bloodbank.apis.hospital.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

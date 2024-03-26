@@ -2,11 +2,10 @@
 package com.bloodbank.apis.user.service;
 
 import com.bloodbank.apis.user.model.BloodUser;
-import com.bloodbank.apis.user.repo.BloodUserRepository;
+import com.bloodbank.apis.user.repository.BloodUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
