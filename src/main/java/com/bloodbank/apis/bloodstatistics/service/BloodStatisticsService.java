@@ -27,7 +27,7 @@ public class BloodStatisticsService {
   public BloodStatistics getBloodStatisticsByBloodGroup(String bloodGroup) {
     Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findByBloodGroup(
         bloodGroup);
-    return bloodStatisticsOptional.get();
+    return bloodStatisticsOptional.orElse(null);
   }
 
   public BloodStatistics createBloodStatistics(BloodStatistics newBloodStatics) {
@@ -36,31 +36,39 @@ public class BloodStatisticsService {
   }
 
 
-  public BloodStatistics updateBloodStatistics(Long id, BloodStatistics bloodStatistics, boolean isDonor) {
+  public BloodStatistics updateBloodStatistics(Long id, BloodStatistics bloodStatistics, Boolean isDonor) {
 
-    Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findById(id);
+    Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findById(id)
+        ;
+    if (bloodStatisticsOptional.isPresent()) {
+      BloodStatistics updateBloodStatics = bloodStatisticsOptional.get();
+      // updateBloodStatics.setBloodGroup(bloodStatistics.getBloodGroup());
+      if (isDonor) {
+        updateBloodStatics.setQuantity(
+            bloodStatistics.getQuantity() + updateBloodStatics.getQuantity());
+      }
+      if (!isDonor) {
+        //receiver
+        if (bloodStatistics.getQuantity() <= updateBloodStatics.getQuantity()) {
+          updateBloodStatics.setQuantity(
+              updateBloodStatics.getQuantity() - bloodStatistics.getQuantity());
+        } else {
+          throw new ValidationException("Asking que. is more than available quantity.");
+        }
 
-    BloodStatistics updateBloodStatics = bloodStatisticsOptional.get();
-   // updateBloodStatics.setBloodGroup(bloodStatistics.getBloodGroup());
-    if (isDonor) {
-      updateBloodStatics.setQuantity(
-          bloodStatistics.getQuantity() + updateBloodStatics.getQuantity());
-    } else {
-      //receiver
-      if (bloodStatistics.getQuantity() <= updateBloodStatics.getQuantity()) {
         updateBloodStatics.setQuantity(
             updateBloodStatics.getQuantity() - bloodStatistics.getQuantity());
-      } else {
-        throw new ValidationException("Asking que. is more than available quantity.");
       }
-
-      updateBloodStatics.setQuantity(
-          updateBloodStatics.getQuantity() - bloodStatistics.getQuantity());
+      if (isDonor == null) {
+        updateBloodStatics.setBloodGroup(bloodStatistics.getBloodGroup());
+        updateBloodStatics.setQuantity(bloodStatistics.getQuantity());
+      }
+      BloodStatistics updatedBloodStatistics = bloodStatisticsRepository.save(updateBloodStatics);
+      return updatedBloodStatistics;
+    } else {
+      throw new RuntimeException("BloodStatistics Are not present...");
     }
-    BloodStatistics updatedBloodStatistics = bloodStatisticsRepository.save(updateBloodStatics);
-    return updatedBloodStatistics;
   }
-
 
   public void deleteBloodStatistics(Long id) {
     bloodStatisticsRepository.deleteById(id);

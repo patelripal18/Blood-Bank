@@ -50,8 +50,7 @@ public class BloodStatisticsController {
   @PutMapping("/{id}")
   public ResponseEntity<BloodStatistics> updateBloodStatistics(@PathVariable Long id,
       @RequestBody BloodStatistics updatedStatistics) {
-    BloodStatistics bloodStatistics = bloodStatisticsService.updateBloodStatistics(id,
-        updatedStatistics, true);
+    BloodStatistics bloodStatistics = bloodStatisticsService.updateBloodStatistics(id, updatedStatistics, null);
     if (bloodStatistics != null) {
       return new ResponseEntity<>(bloodStatistics, HttpStatus.OK);
     } else {

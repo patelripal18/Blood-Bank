@@ -37,14 +37,16 @@ public class DonorService {
         newDonor.getBloodGroup());
     //update stats
     if (bloodStatistics == null){
-      BloodStatistics bs = new BloodStatistics();
-      bs.setQuantity(newDonor.getQuantity());
-      bs.setBloodGroup(newDonor.getBloodGroup());
-      bloodStatisticsService.createBloodStatistics(bs);
+      BloodStatistics bloodStatisticsObject = new BloodStatistics();
+      bloodStatisticsObject.setQuantity(newDonor.getQuantity());
+      bloodStatisticsObject.setBloodGroup(newDonor.getBloodGroup());
+      bloodStatisticsService.createBloodStatistics(bloodStatisticsObject);
     }else {
+      BloodStatistics bloodStatisticsObject = new BloodStatistics();
+      bloodStatisticsObject.setBloodGroup(newDonor.getBloodGroup());
+      bloodStatisticsObject.setQuantity(newDonor.getQuantity());
 
-      bloodStatistics.setQuantity(newDonor.getQuantity());
-      bloodStatisticsService.updateBloodStatistics(bloodStatistics.getId(), bloodStatistics,true);
+      bloodStatisticsService.updateBloodStatistics(bloodStatistics.getId(), bloodStatisticsObject,true);
     }
     donorRepository.save(newDonor);
     return newDonor;
@@ -61,10 +63,10 @@ public class DonorService {
 
     BloodStatistics stats = bloodStatisticsService.getBloodStatisticsByBloodGroup("A+");
     if (stats == null){
-      BloodStatistics bs = new BloodStatistics();
-      bs.setQuantity(1);
-      bs.setBloodGroup("A+");
-      bloodStatisticsService.createBloodStatistics(bs);
+      BloodStatistics bloodStatisticsObject = new BloodStatistics();
+      bloodStatisticsObject.setQuantity(1);
+      bloodStatisticsObject.setBloodGroup("A+");
+      bloodStatisticsService.createBloodStatistics(bloodStatisticsObject);
     }else {
       bloodStatisticsService.updateBloodStatistics(stats.getId(), stats,true);
     }
