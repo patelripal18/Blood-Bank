@@ -1,9 +1,11 @@
 package com.bloodbank.apis.receiver.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,11 +17,12 @@ public class Receiver {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String userId;
+  private int userId;
   private int quantity;
-  private String hospitalId;
+  private int hospitalId;
   private String bloodGroup;
-  private String receiveDate;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+  private LocalDate receiveDate;
   private String contactNumber;
 
 

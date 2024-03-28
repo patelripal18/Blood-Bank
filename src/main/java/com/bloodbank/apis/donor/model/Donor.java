@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,12 +18,12 @@ public class Donor {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
 
   private Long id;
-  private String userId;
+  private int userId;
   private int quantity;
-  private String hospitalId;
+  private int hospitalId;
   private String bloodGroup;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-  private String bloodCollectDate;
+  private LocalDate bloodCollectDate;
 
 
 }
