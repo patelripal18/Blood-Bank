@@ -25,7 +25,12 @@ public class BloodStatisticsController {
 
   @GetMapping("/{id}")
   public ResponseEntity<BloodStatistics> getBloodStatisticsById(@PathVariable Long id) {
-    BloodStatistics bloodStatistics = bloodStatisticsService.getBloodStatisticsById(id);
+//    try {
+      BloodStatistics bloodStatistics = bloodStatisticsService.getBloodStatisticsById(id);
+//    }
+//    catch (){
+//      System.out.println("not able"+e);
+//    }
     if (bloodStatistics != null) {
       return new ResponseEntity<>(bloodStatistics, HttpStatus.OK);
     } else {
@@ -35,8 +40,8 @@ public class BloodStatisticsController {
   }
 
   @PostMapping
-  public ResponseEntity<BloodStatistics> createBloodStatics(@RequestBody BloodStatistics newbloodStatistics) {
-    BloodStatistics createdbloodStatics = bloodStatisticsService.createBloodStatics(
+  public ResponseEntity<BloodStatistics> createBloodStatistics(@RequestBody BloodStatistics newbloodStatistics) {
+    BloodStatistics createdbloodStatics = bloodStatisticsService.createBloodStatistics(
         newbloodStatistics);
     return new ResponseEntity<>(createdbloodStatics, HttpStatus.CREATED);
 
@@ -46,7 +51,7 @@ public class BloodStatisticsController {
   public ResponseEntity<BloodStatistics> updateBloodStatistics(@PathVariable Long id,
       @RequestBody BloodStatistics updatedStatistics) {
     BloodStatistics bloodStatistics = bloodStatisticsService.updateBloodStatistics(id,
-        updatedStatistics);
+        updatedStatistics, true);
     if (bloodStatistics != null) {
       return new ResponseEntity<>(bloodStatistics, HttpStatus.OK);
     } else {

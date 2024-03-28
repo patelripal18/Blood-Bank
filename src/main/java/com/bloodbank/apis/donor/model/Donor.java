@@ -1,5 +1,6 @@
 package com.bloodbank.apis.donor.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,10 @@ public class Donor {
 
   private Long id;
   private String userId;
-  private String quantity;
+  private int quantity;
   private String hospitalId;
+  private String bloodGroup;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
   private String bloodCollectDate;
 
 

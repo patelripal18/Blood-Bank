@@ -16,7 +16,7 @@ public class BloodStatistics {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String bloodGroup;
-  private String quantity;
+  private int quantity;
 
 
 }
