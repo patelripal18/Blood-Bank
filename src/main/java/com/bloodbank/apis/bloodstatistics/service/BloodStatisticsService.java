@@ -55,9 +55,6 @@ public class BloodStatisticsService {
         } else {
           throw new ValidationException("Asking que. is more than available quantity.");
         }
-
-        updateBloodStatics.setQuantity(
-            updateBloodStatics.getQuantity() - bloodStatistics.getQuantity());
       }
       if (isDonor == null) {
         updateBloodStatics.setBloodGroup(bloodStatistics.getBloodGroup());

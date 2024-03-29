@@ -36,19 +36,25 @@ public class ReceiverService {
 
 
   public Receiver createReceiver(Receiver newReceiver) {
+    BloodStatistics bloodStatistics = bloodStatisticsService.getBloodStatisticsByBloodGroup(
+        newReceiver.getBloodGroup());
+
+    //update stats
+    if (bloodStatistics == null){
+      BloodStatistics bloodStatisticsObject = new BloodStatistics();
+      bloodStatisticsObject.setQuantity(newReceiver.getQuantity());
+      bloodStatisticsObject.setBloodGroup(newReceiver.getBloodGroup());
+      bloodStatisticsService.createBloodStatistics(bloodStatisticsObject);
+    }else {
+      BloodStatistics bloodStatisticsObject = new BloodStatistics();
+      bloodStatisticsObject.setBloodGroup(newReceiver.getBloodGroup());
+      bloodStatisticsObject.setQuantity(newReceiver.getQuantity());
+
+      bloodStatisticsService.updateBloodStatistics(bloodStatistics.getId(), bloodStatisticsObject,false);
+    }
     receiverRepository.save(newReceiver);
     //update stats
-    Optional<BloodStatistics> bloodStatisticsOptional = bloodStatisticsRepository.findByBloodGroup(
-        newReceiver.getBloodGroup());
-    if (bloodStatisticsOptional.isEmpty()){
-      BloodStatistics bs = new BloodStatistics();
-      bs.setQuantity(2);
-      bs.setBloodGroup("A+");
-      bloodStatisticsService.createBloodStatistics(bs);
-    }else {
-      BloodStatistics  bloodStatistics = bloodStatisticsOptional.get();
-      bloodStatisticsService.updateBloodStatistics(bloodStatistics.getId(), bloodStatistics,false);
-    }
+
     return newReceiver;
   }
 
